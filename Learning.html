@@ -1,16 +1,40 @@
-<html>
+<!DOCTYPE html> <!--defines doc as html-->
+<html lange="en-US">
 <meta http-equiv="refresh" content="5">
-<head>
-<title> Nicholas Harry Fray Webpage</title>
-<!-- this is where css shit goes dog!-->
+<head><!-- the head contains meta data like css-->
+  <style>
+  p.error {
+    color:red
+  }
+  #h1 {
+    line-height:100%;
+    color:orange;
+    font-family: verdana;
+    line-height: 80%;
+    padding-bottom: 1px
+  }
+  #img1 {
+
+  }
+  </style>
+<title>Root Page</title>
 </head>
 
-<body>
-  <p>
-    <!-- athis is how to comment in html
-    white space doesn't seem to matter in this language -->
-    What it do? Me llama Nicholas H Fray and this site is all me!</p>
+<body style="background-color:rgb(128,128,128)"> <!-- contains visible page content-->
+  <<a href="https://www.sixflags.com/america">
+    <img align="left" src="data:image/jpeg;base64,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">
+   </a>
+    <h1 id=h1 ><span style="font-size:12px;line-height:50%">The</span><br>Nicholas<br>Harry<br>Fray</h1>
+<hr>
+<p class="error"> I am different</p>
+  <p style="color:black">What it do? <del> Me llama</del> My name is Nicholas Harry Fray and this site is all me!</p>
+<a href="https://www.facebook.com/nick.fray" target="_blank">Nick Fray FB</a>
+<img>
+<table class="image"><!-- many situations where this should not be used (inline class i mean) -->
+<caption align="bottom">Dapper AF am I right!?</caption>
+<!-- code below creates parts of a table with the pic and the text to keep shit together -->
+<tr><td><img src="https://images-na.ssl-images-amazon.com/images/M/MV5BMTQ5ODI0MDc4M15BMl5BanBnXkFtZTgwNTM5MDk3MTE@._V1_UX214_CR0,0,214,317_AL_.jpg"></td></tr>
+</table>
 </body>
-
 
 </html>
