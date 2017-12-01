@@ -1,2 +1,2 @@
-# MyWebsite
-Learning HTML, CSS, JavaScript, SQL, JQUERY Through Doing!
+# ToDo
+Learning JavaScript Through Doing!
