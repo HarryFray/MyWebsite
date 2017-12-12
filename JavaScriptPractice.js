@@ -586,7 +586,7 @@ findShortestWordAmongMixedElements([4, 'two','a', 2, 'three']);
 function findShortestWordAmongMixedElements(arr) {
   arr.forEach(function(current){
     if(arr.length !== 0 && typeof(current) === 'string'){
-      shortest = 'current'
+      shortest = current
     }else{
       return []
     }
@@ -600,3 +600,129 @@ function findShortestWordAmongMixedElements(arr) {
   }
   return shortest
 }
+
+
+
+///////////////////////////////////////
+/*
+Notes:
+* If the given array is empty, it should return 0.
+* If the array contains no numbers, it should return 0.
+*/
+findSmallestNumberAmongMixedElements([4, 'lincoln', 9, 'octopus']);
+
+
+function findSmallestNumberAmongMixedElements(arr) {
+  var smallestNumber = 1000000
+  if (arr.length === 0){
+    return 0
+  }else{
+    arr.forEach(function(element){
+      if (typeof(element) === 'number' && element < smallestNumber){
+        smallestNumber = element
+      }
+    })
+    return smallestNumber
+  }
+
+}
+
+
+///////////////////////////////////////////////
+/*
+Notes:
+* If the array is empty, it should return an empty string ("").
+* If the array contains no strings; it should return an empty string.
+*/
+getLongestWordOfMixedElements([]);
+
+
+function getLongestWordOfMixedElements(arr) {
+  var longestWord = 0
+  if (arr.length === 0){
+    return ''
+  }else{
+    arr.forEach(function(element){
+      if( typeof(element) === 'string' && element.length > longestWord){
+        longestWord = element
+      }
+    })
+    if (longestWord === 0){
+      return ''
+    }else{
+      return longestWord
+  }
+  }
+}
+
+
+
+////////////////////////////////////////////////
+/*
+Notes:
+* The array might contain values of a type other than numbers.
+* If the array is empty, it should return 0.
+* If the array contains no numbers, it should return 0.
+*/
+getLargestNumberAmongMixedElements([3, 'word', 5, 'up', 3, 1]);
+
+
+
+function getLargestNumberAmongMixedElements(arr) {
+  var largestNumber = arr.sort()[0]
+  if (arr.length === 0){
+    return 0
+  }else{
+    arr.forEach(function(element){
+      if (typeof(element) === 'number' && element > largestNumber){
+        largestNumber = element
+      }
+    })
+    return typeof(largestNumber) === 'number' ? largestNumber : 0
+  }
+
+}
+
+
+/////////////////////////////
+
+function computeSummationToN(n) {
+  if (n === 0){
+    return 0
+  }else{
+    return n + computeSummationToN(n-1)
+  }
+}
+
+computeSummationToN(3)
+
+
+//////////////////////
+
+/*
+Notes:
+* (100 - 90) --> 'A'
+* (89  - 80) --> 'B'
+* (79  - 70) --> 'C'
+* (69  - 60) --> 'D'
+* (59  -  0) --> 'F'
+* If the given score is greater than 100 or less than 0, it should return 'INVALID SCORE'.
+
+*/
+
+function convertScoreToGrade(score) {
+  if (score > 100 || score < 0){
+    return 'INVALID SCORE'
+}else if (score <= 100 && score >= 90){
+    return 'A'
+  }else if ( score >= 80){
+    return 'B'
+  }else if (score >= 70){
+    return 'C'
+  }else if (score >= 60){
+    return 'D'
+  }else{
+    return 'F'
+  }
+}
+////////////////////////////////////
