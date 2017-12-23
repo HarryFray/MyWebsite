@@ -1001,3 +1001,101 @@ function assertObjectsEqual(actual, expected, testName) {
         console.log( 'FAILED [' + testName + '] Expected ' + JSON.stringify(expected) +', but got ' + JSON.stringify(actual) )
       }
   }
+
+
+  /////////////////////////////
+
+
+  // Your assertion function:
+function assertArraysEqual(actual, expected, testName)
+  if(actual === expected){
+    console.log('Passed')
+  }else{
+    console.log('Failed [' + testName + '] expected ' + expected + ' and got ' + actual)
+  }
+}
+
+
+// Your code under test:
+function map(array, callbackFunction) {
+  var newArray = [];
+  array.forEach(function(element) {
+    newArray = newArray + callbackFunction(element);
+  });
+  return newArray;
+}
+
+function cubeAll(numbers) {
+  return map(numbers, function(n) {
+    return n * n;
+  });
+}
+
+assertArraysEqual(cubeAll([1,2,3]),149,'it should cube array outputing a number')
+
+
+////////////////////////////////
+
+
+// Your assertion function:
+function assertObjectsEqual(actual, expected, testName) {
+  var JsonActual = JSON.stringify(actual)
+  var JsonExpected = JSON.stringify(expected)
+  if( JsonExpected === JsonActual){
+    console.log ('Passed')
+  }else{
+    console.log('Failed [' + testName '] Expected ' + expected + ' but got' + actual)
+  }
+}
+
+// Your code under test:
+function addFullNameProp(obj) {
+  var firstName = obj.firstName;
+  var lastName = obj[lastName];
+
+  if (firstName && lastName) {
+    obj['fullName'] = firstName + ' ' + lastName;
+  }
+
+  return obj;
+}
+
+// Your calls to 'assertObjectsEqual':
+var me = {
+  firstName: 'Nick',
+  lastName: 'Fray'
+}
+var meFull = {
+  firstName: 'Nick',
+  lastName: 'Fray',
+  fullName: 'Nick Fray'
+}
+assertObjectsEqual(addFullNameProp(me), meFull, 'should add full name property to object')
+
+
+
+////////////////////////////////
+
+
+assertArraysEqual(expected, actual, testName){
+  if (expected === actual){
+    console.log('Passed')
+  }else{
+    console.log('Failed [' + testName + '] expected ' + expected + ' but got ' + actual)
+  }
+}
+
+function average(numbers) {
+  var sumNum = sum(numbers)
+  return sumNum / numbers.length
+}
+
+function sum(numbers) {
+  var sum = 0
+  numbers.forEach(function(num){
+    sum += num
+  })
+  return sum
+}
+
+assertArraysEqual(10, average([0,10,15]), 'should compute average of numbers')
