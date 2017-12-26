@@ -1077,7 +1077,7 @@ assertObjectsEqual(addFullNameProp(me), meFull, 'should add full name property t
 ////////////////////////////////
 
 
-assertArraysEqual(expected, actual, testName){
+function assertArraysEqual(expected, actual, testName){
   if (expected === actual){
     console.log('Passed')
   }else{
@@ -1098,4 +1098,186 @@ function sum(numbers) {
   return sum
 }
 
-assertArraysEqual(10, average([0,10,15]), 'should compute average of numbers')
+function testAverage(){
+  assertArraysEqual(15, average([10,20]), 'should compute average of positive numbers')
+  assertArraysEqual(-15, average([-10,-20]), 'should compute average of negative numbers')
+  assertArraysEqual(5, average([-10,20]), 'should compute average of intigers')
+  assertArraysEqual(1, average([.5,1.5]), 'should compute average of non-integers')
+}
+
+function testSum(){
+  assertArraysEqual(10, sum([5,5]), 'should add positive integers')
+  assertArraysEqual(-10, sum([-5,-5]), 'should add negative integers')
+  assertArraysEqual(0, sum([-5,5]), 'should add mixed integers')
+  assertArraysEqual(1, sum([.5,.5]), 'should add non-integers')
+}
+
+testAverage()
+testSum()
+
+
+//////////////////////
+
+var classList = ["Joe", "Jack", "John", "Fred", "Frank", "Barry", "Larry", "Mary",
+"Harry", "Farrell", "Susan", "Monica", "Keira", "Caroline", "Harriet", "Erica",
+"Luann", "Cheryl", "Beth", "Rupa", "Linda", "Allison", "Nancy", "Dora"];
+
+/*
+var classListWithAges = [{"name":"Joe","age":11},{"name":"Jack","age":10},
+{"name":"John","age":11},{"name":"Fred","age":11},{"name":"Frank","age":11},
+{"name":"Barry","age":11},{"name":"Larry","age":11},{"name":"Mary","age":11},
+{"name":"Harry","age":11},{"name":"Farrell","age":10},{"name":"Susan","age":10},
+{"name":"Monica","age":11},{"name":"Keira","age":10},{"name":"Caroline","age":10},
+{"name":"Harriet","age":11},{"name":"Erica","age":11},{"name":"Luann","age":10},
+{"name":"Cheryl","age":11},{"name":"Beth","age":10},{"name":"Rupa","age":11},
+{"name":"Linda","age":10},{"name":"Allison","age":10},{"name":"Nancy","age":10},
+{"name":"Dora","age":10}]
+*/
+
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
+function getRandomIntInclusive(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function decorateClassListWithAges(classList) {
+  var newClassList = []
+  classList.forEach(function(name){
+    newClassList.push({"age":getRandomIntInclusive(10,11), "name":name})
+  })
+  return newClassList
+}
+
+
+//////////
+
+/*
+
+An isogram is a word that has no repeating letters, consecutive or non-consecutive.
+
+Write and test a function that determines whether a string is an isogram.
+
+Notes:
+* Assume your input is only letters.
+* Assume the empty string is an isogram.
+* Ignore case.
+* Follow the pseudocode exactly!
+
+*/
+
+function isIsogram(text) {
+  var textSet = new Set()
+  for(i = 0; i < text.length; i++){
+    textSet.add(text[i])
+  }
+  return text.length === textSet.size ? true : false
+}
+
+function assertEqual(expected, actual, testName){
+  if (expected === actual){
+    console.log ('Passed')
+  }else{
+    console.log ('Failed [' + testName + '] expected ' + expected + ' and got ' + actual)
+  }
+}
+
+function testIsIsogramPositive(){
+  var expected = true
+  var actual = isIsogram('nick')
+  return assertEqual(expected, actual, 'should confirm is Isogram')
+}
+
+function testIsIsogramNegativeSameLetters(){
+  var expected = false
+  var actual = isIsogram('nicknick')
+  return assertEqual(expected, actual, 'should confirm not Isogram based on same letters')
+}
+
+function testIsIsogramNegativeSameLettersInOrder(){
+  var expected = false
+  var actual = isIsogram('nnick')
+  return assertEqual(expected, actual, 'should confirm not Isogram based on same letters in Order')
+}
+
+testIsIsogramPositive()
+testIsIsogramNegativeSameLetters()
+testIsIsogramNegativeSameLettersInOrder()
+
+
+
+//////////////////////////
+
+function findMaxRepeatCountInWord(word) {
+  var letterCount = {}
+  var maxRepeatCountInWord = 0
+  for (i = 0 ; i < word.length; i++){
+    if (letterCount[word[i]] === undefined){
+      letterCount[word[i]] = 1
+    }else{
+      ++letterCount[word[i]]
+    }
+  }
+  for (letter in letterCount){
+    if( letterCount[letter] > maxRepeatCountInWord){
+      maxRepeatCountInWord = letterCount[letter]
+    }
+  }
+  return maxRepeatCountInWord
+}
+
+  function findFirstWordWithMostRepeatedChars(text) {
+    var maxRepeatCountOverall = 0;
+    var wordWithMaxRepeatCount = '';
+
+    var words = text.split(' ')
+    words.forEach(function(word){
+        var repeatCountForWord = findMaxRepeatCountInWord(word)
+        if (repeatCountForWord > maxRepeatCountOverall){
+          maxRepeatCountOverall = repeatCountForWord
+          wordWithMaxRepeatCount = word
+        }
+      })
+    return wordWithMaxRepeatCount;
+  }
+
+
+  ////////////////////////////////////////////
+
+  function PhoneNumberFormatter(numbers) {
+  this.numbers = numbers;
+}
+
+PhoneNumberFormatter.prototype.render = function() {
+  var string = '';
+  // your code here
+  return string;
+};
+
+PhoneNumberFormatter.prototype.getAreaCode = function() {
+  // your code here
+};
+
+PhoneNumberFormatter.prototype.getExchangeCode = function() {
+  // your code here
+};
+
+PhoneNumberFormatter.prototype.getLineNumber = function() {
+  // your code here
+};
+
+PhoneNumberFormatter.prototype.parenthesize = function(string) {
+  return '(' + string + ')';
+};
+
+PhoneNumberFormatter.prototype.slice = function(start, end) {
+  return this.numbers.slice(start, end).join('');
+};
+
+
+///////// learning prototype shit! :)
+
+var rabbit = {};
+rabbit.speak = function(line){
+  console.log("The rabbit says '" + line + "'")
+}
